@@ -2,3 +2,4 @@ tags
 .DS_Store
 /Gemfile.lock
 /spec/examples.txt
+/tmp/
