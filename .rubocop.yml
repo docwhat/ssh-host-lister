@@ -1,0 +1,16 @@
+---
+AllCops:
+  DisplayCopNames: true
+
+Style/MultilineMethodCallIndentation:
+  EnforcedStyle: 'indented'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/LineLength:
+  Exclude:
+    - 'spec/**/*'
+
+inherit_from: '.rubocop_todo.yml'
