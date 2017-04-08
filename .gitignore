@@ -1,5 +1,13 @@
+/.bundle/
+/.yardoc
+/Gemfile.lock
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+/spec/examples.txt
+
 tags
 .DS_Store
-/Gemfile.lock
-/spec/examples.txt
-/tmp/
