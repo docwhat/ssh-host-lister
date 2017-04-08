@@ -1,18 +1,23 @@
 # frozen_string_literal: true
-require 'forwardable'
 
-# SshConfig is used to parse (some of) ssh_config(5) files.
-class SshConfig
-  extend Forwardable
-  def_delegators :@hosts, :length, :count, :sort, :sort_by
-  def_delegator :@hosts, :keys, :hostnames
-  def_delegator :@hosts, :key?, :hostname?
+require 'ssh_config/loader.rb'
 
-  def initialize
-    @hosts = {}
+# A module for listing out ssh_config(5)
+module SshConfig
+  module_function
+
+  def default_loader
+    @default_loader ||= Loader.new
   end
 
-  def parse(str)
-    str * count
+  def load_defaults
+    {}.tap do |result|
+      %w(/etc/ssh/ssh_config ~/.ssh/config)
+        .map { |path| File.expand_path path }
+        .select { |path| File.readable? path }
+        .each do |path|
+          result.merge! default_loader.parse(File.read(path))
+        end
+    end
   end
 end
