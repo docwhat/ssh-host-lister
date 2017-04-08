@@ -1,4 +1,4 @@
-[![Gem Version](https://badge.fury.io/rb/ssh-host-lister.png)](http://badge.fury.io/rb/ssh-host-lister)
+[![Gem Version](https://badge.fury.io/rb/ssh-host-lister.svg)](http://badge.fury.io/rb/ssh-host-lister)
 [![Build Status](https://travis-ci.org/docwhat/ssh-host-lister.svg?branch=master)](https://travis-ci.org/docwhat/ssh-host-lister)
 [![Code Climate](https://codeclimate.com/github/docwhat/ssh-host-lister/badges/gpa.svg)](https://codeclimate.com/github/docwhat/ssh-host-lister)
 [![Test Coverage](https://codeclimate.com/github/docwhat/ssh-host-lister/badges/coverage.svg)](https://codeclimate.com/github/docwhat/ssh-host-lister/coverage)
