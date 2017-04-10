@@ -12,7 +12,7 @@ module SshConfig
     def distinct_names
       @distinct_names ||= begin
         no_ips = @names
-          .sort(&:count)
+          .sort_by(&:length)
           .reject { |name| name =~ /\A\d+\.\d+\.\d+\.\d+\Z/ }
 
         no_ips
