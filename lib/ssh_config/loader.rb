@@ -5,30 +5,15 @@ module SshConfig
   # For loading an ssh_config(5) file.
   class Loader
     def parse(str)
-      pr = ParseRun.new
-
-      str
-        .to_str
-        .split(/[\n\r]+/)
-        .each do |line|
-
-          pr.parse_host(Regexp.last_match(1)) if line =~ /^\s*Host\s+(.*)/
-        end
-
-      pr.results
+      parse_lines(str.to_str.split(/[\n\r]+/))
     end
-  end
 
-  # Internal method for parsing
-  class ParseRun
-    def parse_host(arg)
-      hosts = arg
-        .split(/\s+/)
-        .reject { |host| host =~ /^\d|%|\*/ }
+    def parse_lines(strings)
+      Array(strings).map(&:to_str).each do |line|
+        p_host(Regexp.last_match(1)) if line =~ /^\s*Host\s+(.*)/
+      end
 
-      return if hosts.empty?
-      entry = Entry.new(hosts)
-      entry.distinct_names.each { |host| results[host] = entry }
+      results
     end
 
     def results
@@ -37,10 +22,16 @@ module SshConfig
 
     private
 
-    attr_writer :entry
+    def p_host(arg)
+      hosts = arg
+        .split(/\s+/)
+        .reject { |host| host =~ /^\d|%|\*/ }
 
-    def entry
-      @entry ||= nil
+      add_entry(Entry.new(hosts)) unless hosts.empty?
+    end
+
+    def add_entry(entry)
+      entry.distinct_names.each { |host| results[host] = entry }
     end
   end
 end

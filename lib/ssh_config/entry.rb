@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module SshConfig
-  # SshHost represents a single Host entry in an ssh_config(5)
+  # Entry represents a single Host entry in an ssh_config(5)
   class Entry
     attr_reader :user
 
