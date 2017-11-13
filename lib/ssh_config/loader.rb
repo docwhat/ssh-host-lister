@@ -10,6 +10,7 @@ module SshConfig
 
     def parse_lines(strings)
       Array(strings).map(&:to_str).each do |line|
+        p_include(Regexp.last_match(1)) if line =~ /^\s*Include\s+(.*)/
         p_host(Regexp.last_match(1)) if line =~ /^\s*Host\s+(.*)/
       end
 
@@ -28,6 +29,18 @@ module SshConfig
         .reject { |host| host =~ /^\d|%|\*/ }
 
       add_entry(Entry.new(hosts)) unless hosts.empty?
+    end
+
+    def p_include(glob)
+      old_dir = Dir.pwd
+      begin
+        Dir.chdir File.expand_path('~/.ssh')
+        Dir[glob.chomp].each do |fname|
+          parse(File.read(fname))
+        end
+      ensure
+        Dir.chdir old_dir
+      end
     end
 
     def add_entry(entry)
