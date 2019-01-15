@@ -1,22 +1,10 @@
 ---
-language: ruby
-cache: bundler
-rvm:
-  - 2.3.3
-  - 2.4.0
-
-after_success:
-  - bundle exec codeclimate-test-reporter
-
-addons:
-  code_climate:
-    repo_token: 6e837e155c6eb45669c15ee7443b18730bb70b98b82b30e94b55bf9d786fdb5b
-
-deploy:
-  provider: rubygems
-  api_key:
-    secure: 'D+qC48yBxpvRo/vEN/9Xu1FIStarTGuy4PFjEKhjqLlngeEhGScIbzMmK1aBmLe3sJUGJtmt1o2+hfU/93FI70nFxDtJBWFu0XKLAf4JUhWvO4hKazIUqEaotzQJW0MjA+NBa9KdaSIJGJc1tRteM7oF86/fHaSR8mZI9M9vVvjcCDNRxpprkGwJi8Uo2DXHbqkk55sUDZpEwVetidhocD3GECaFcsAnQT/UW5StAg5kNBW8qgvzOTAIQVqXBKQpfIwjhJVOcxJgRIDgHIaiMjQxgNswU0KI+91vBC6X3bn8OCeF8pHuNBsznq9rRjfJ+qRHK0OSHIDP+IfWnsvLItgxqtPzxb2xmrERpqQCKJP7ADMjIu4KIA/S/wBdo1B4zVb/89VSdKiVrbOAtZWcxf0BPD1jniWduqXRRJ4uSKc9b2BfTXsqoTgvIQVLYG/x3qI1SXTa6+DOfR2eLi3C0GY/W0jn55M6aPnZqemPCeh4Bp8z0C8lH6aU7VDNlDnpJMTJWHEHCgcuNmupCgYi0wxAa/R5039rDSNGWLHJqL9VGeP998nuKGTLNduV/Yd5DvlJutD32iKoHoRMn4uUrvYka7RGQP5xd8R4MPUu6XJCZSP0QLO3S62cR3qxH6v4chlDjgtD9J4PCFL4bxZ1RPyjNRz7dxkmZQ8rWJmU85U='
-  gem: ssh-host-lister
-  on:
-    tags: true
-    repo: 'docwhat/ssh-host-lister'
+language: go
+go: "1.11.x"
+notifications:
+  email:
+    on_success: never
+    on_failure: never
+script:
+  - "go run ./..."
+  - "go test ./..."
