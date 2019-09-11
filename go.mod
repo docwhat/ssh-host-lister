@@ -1,6 +1,5 @@
 module github.com/docwhat/ssh-host-lister
 
-require (
-	github.com/kevinburke/ssh_config v0.0.0-20180830205328-81db2a75821e
-	github.com/pelletier/go-buffruneio v0.2.0 // indirect
-)
+go 1.13
+
+require github.com/kevinburke/ssh_config v0.0.0-20190725054713-01f96b0aa0cd

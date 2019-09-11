@@ -5,12 +5,15 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/kevinburke/ssh_config"
+	ssh_config "github.com/kevinburke/ssh_config"
 )
 
 func narf(configFile string) {
 	f, _ := os.Open(configFile)
-	cfg, _ := ssh_config.Decode(f)
+	cfg, err := ssh_config.Decode(f)
+	if err != nil {
+		panic(err)
+	}
 	for _, host := range cfg.Hosts {
 		fmt.Println("patterns:", host.Patterns)
 		for _, node := range host.Nodes {
@@ -18,11 +21,9 @@ func narf(configFile string) {
 			// distinguish between Empty, KV, and Include nodes.
 			fmt.Println(node.Pos())
 			fmt.Println(node.String())
-			switch node.(type) {
+			switch t := node.(type) {
 			case *ssh_config.Include:
-				includeObject := node.(*ssh_config.Include)
-				fmt.Println("INCLUDE")
-				fmt.Println(includeObject.String())
+				fmt.Println("Narf", t)
 			}
 		}
 	}
@@ -32,6 +33,20 @@ func narf(configFile string) {
 }
 
 func main() {
+	// userSettings := ssh_config.DefaultUserSettings
+
+	// // Force the userConfig to be loaded.
+	// fmt.Println(userSettings.Get("*", "*"))
+
+	// for _, host := range userSettings.userConfig.Hosts {
+	//   fmt.Println("patterns:", host.Patterns)
+	//   for _, node := range host.Nodes {
+	//     // Manipulate the nodes as you see fit, or use a type switch to
+	//     // distinguish between Empty, KV, and Include nodes.
+	//     fmt.Println(node.String())
+	//   }
+	// }
+
 	configFile := filepath.Join(os.Getenv("HOME"), ".ssh", "config")
 	narf(configFile)
 }
