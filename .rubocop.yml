@@ -2,7 +2,7 @@
 AllCops:
   DisplayCopNames: true
 
-Style/MultilineMethodCallIndentation:
+Layout/MultilineMethodCallIndentation:
   EnforcedStyle: 'indented'
 
 Metrics/BlockLength:

@@ -1,15 +1,16 @@
 # frozen_string_literal: true
+
 require 'ssh_config/entry'
 
 RSpec.describe SshConfig::Entry do
   subject(:host) { described_class.new names }
   let(:names) do
-    %w(
+    %w[
       jrt
       jack-russell-terrier
       jack-russell-terrier.example.com
       127.1.1.23
-    )
+    ]
   end
 
   it 'exists' do

@@ -12,7 +12,7 @@ module SshConfig
 
   def load_defaults
     {}.tap do |result|
-      %w(/etc/ssh/ssh_config ~/.ssh/config)
+      %w[/etc/ssh/ssh_config ~/.ssh/config]
         .map { |path| File.expand_path path }
         .select { |path| File.readable? path }
         .each do |path|

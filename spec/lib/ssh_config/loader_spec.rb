@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'ssh_config/loader'
 
 RSpec.describe SshConfig::Loader do

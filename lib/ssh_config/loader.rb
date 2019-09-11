@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'ssh_config/entry'
 
 module SshConfig
@@ -8,6 +9,7 @@ module SshConfig
       parse_lines(str.to_str.split(/[\n\r]+/))
     end
 
+    # This isn't really :reek:DuplicateMethodCall
     def parse_lines(strings)
       Array(strings).map(&:to_str).each do |line|
         p_include(Regexp.last_match(1)) if line =~ /^\s*Include\s+(.*)/
